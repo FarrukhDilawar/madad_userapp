@@ -1,25 +1,26 @@
-//
-//  ViewController.swift
-//  madad_userapp
-//
-//  Created by Farrukh on 17/01/2018.
-//  Copyright © 2018 assassindeveloper. All rights reserved.
-//
+
 
 import UIKit
+import GoogleMaps
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    override func loadView() {
+        navigationItem.title = "Hello Map"
+        
+        let camera = GMSCameraPosition.camera(withLatitude: -33.868,
+                                              longitude: 151.2086,
+                                              zoom: 14)
+        let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
+        
+        let marker = GMSMarker()
+        marker.position = camera.target
+        marker.snippet = "Hello World"
+        marker.appearAnimation = GMSMarkerAnimation.pop
+        marker.map = mapView
+        
+        view = mapView
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
+
 
